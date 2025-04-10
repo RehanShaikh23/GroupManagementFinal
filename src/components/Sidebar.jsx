@@ -19,10 +19,10 @@ function Sidebar() {
             <NavLink to="/manage-subzones" className={({ isActive }) => (isActive ? "active" : "")}>Manage SubZones</NavLink>
           </li>
           <li>
-            <NavLink to="/" className={({ isActive }) => (isActive ? "active" : "")}>Manage Estimate</NavLink>
+            <NavLink to="/manage-estimates" className={({ isActive }) => (isActive ? "active" : "")}>Manage Estimate</NavLink>
           </li>
           <li>
-            <NavLink to="/" className={({ isActive }) => (isActive ? "active" : "")}>Manage Invoices</NavLink>
+            <NavLink to="/manage-invoices" className={({ isActive }) => (isActive ? "active" : "")}>Manage Invoices</NavLink>
           </li>
           <li>
             <NavLink to="/manage-brands" className={({ isActive }) => (isActive ? "active" : "")}>Manage Brands</NavLink>
