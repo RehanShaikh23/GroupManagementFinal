@@ -15,7 +15,7 @@ import ManageBrand from "./pages/ManageBrand"
 import AddBrand from "./pages/AddBrand"
 import EditBrand from "./pages/EditBrand"
 import ManageSubzones from "./pages/ManageSubzones"
-import EstimateManager from "./components/Estimate/EstimateManager"
+import ManageEstimate from "./components/Estimate/ManageEstimate"
 import "./App.css"
 
 function App() {
@@ -95,7 +95,7 @@ function App() {
               <Route path="/add-brand" element={<AddBrand brands={brands} chains={chains} setBrands={setBrands} />} />
               <Route path="/edit-brand/:id" element={<EditBrand brands={brands} setBrands={setBrands} chains={chains} />} />
               <Route path="/manage-subzones" element={<ManageSubzones />} />
-              <Route path="/manage-estimates" element={<EstimateManager estimates={estimates} setEstimates={setEstimates} groups={groups} chains={chains} brands={brands} />} />
+              <Route path="/manage-estimates" element={<ManageEstimate estimates={estimates} setEstimates={setEstimates} chains={chains} groups={groups} />} />
               <Route path="*" element={<Navigate to="/" replace />} />
             </Routes>
           </main>
