@@ -188,4 +188,21 @@
   .save-estimate-btn:hover {
     background-color: #1565c0;
   }
+
+  .generate-btn {
+    background-color: #6c63ff;
+    color: white;
+    padding: 6px 12px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+  
+  .generate-btn:hover {
+    background-color: #574b90;
+    transform: scale(1.05);
+  }
+  
   

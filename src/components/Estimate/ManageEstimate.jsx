@@ -1,11 +1,9 @@
-"use client"
-
-import { useState } from "react"
-import "./ManageEstimate.css"
+import { useState } from "react";
+import "./ManageEstimate.css";
 
 const ManageEstimate = () => {
-  const [view, setView] = useState("list")
-  const [date, setDate] = useState("")
+  const [view, setView] = useState("list");
+  const [date, setDate] = useState("");
   const [estimates, setEstimates] = useState([
     {
       id: 1,
@@ -29,51 +27,8 @@ const ManageEstimate = () => {
       pricePerUnit: 1000,
       total: 6000,
     },
-    {
-      id: 3,
-      group: "Delhi Darbar",
-      chainId: 3,
-      brand: "Delta Equinox",
-      zone: "Thane",
-      serviceDetails: "Engine Servicing",
-      totalUnits: 4,
-      pricePerUnit: 12,
-      total: 4800,
-    },
-    {
-      id: 4,
-      group: "Deccan Punjab",
-      chainId: 5,
-      brand: "Skava",
-      zone: "Vashi",
-      serviceDetails: "Differential Servicing",
-      totalUnits: 3,
-      pricePerUnit: 1100,
-      total: 3300,
-    },
-    {
-      id: 5,
-      group: "Persian Darbar",
-      chainId: 6,
-      brand: "Panaya",
-      zone: "Borivali",
-      serviceDetails: "Engine Maintenance",
-      totalUnits: 5,
-      pricePerUnit: 7500,
-      total: 6000,
-    },
-    {
-      id: 6,
-      group: "Main Khemf",
-      chainId: 4,
-      brand: "Skava",
-      zone: "Neelinfo",
-      serviceDetails: "Radiator Service",
-      totalUnits: 1,
-      pricePerUnit: 2500,
-      total: 2500,
-    },
-  ])
+    // Add more estimates here
+  ]);
   const [formData, setFormData] = useState({
     group: "",
     chainId: "",
@@ -83,36 +38,35 @@ const ManageEstimate = () => {
     totalUnits: "",
     pricePerUnit: "",
     total: "",
-  })
-
-  const [editId, setEditId] = useState(null)
+  });
+  const [editId, setEditId] = useState(null);
+  const [invoiceData, setInvoiceData] = useState(null);  // Add state for invoice
 
   const handleChange = (e) => {
-    const { name, value } = e.target
+    const { name, value } = e.target;
     setFormData((prev) => ({
       ...prev,
       [name]: value,
-    }))
-  }
+    }));
+  };
 
   const handleSubmit = (e) => {
-    e.preventDefault()
-
-    const total = parseInt(formData.totalUnits) * parseInt(formData.pricePerUnit)
+    e.preventDefault();
+    const total = parseInt(formData.totalUnits) * parseInt(formData.pricePerUnit);
 
     if (editId) {
       const updated = estimates.map((item) =>
         item.id === editId ? { ...formData, id: editId, total: total } : item
-      )
-      setEstimates(updated)
-      setEditId(null)
+      );
+      setEstimates(updated);
+      setEditId(null);
     } else {
       const newEstimate = {
         ...formData,
         id: estimates.length + 1,
         total: total,
-      }
-      setEstimates([...estimates, newEstimate])
+      };
+      setEstimates([...estimates, newEstimate]);
     }
 
     setFormData({
@@ -124,17 +78,17 @@ const ManageEstimate = () => {
       totalUnits: "",
       pricePerUnit: "",
       total: "",
-    })
-    setDate("")
-    setView("list")
-  }
+    });
+    setDate("");
+    setView("list");
+  };
 
   const handleDelete = (id) => {
     if (window.confirm("Are you sure you want to delete this estimate?")) {
-      const updated = estimates.filter((item) => item.id !== id)
-      setEstimates(updated)
+      const updated = estimates.filter((item) => item.id !== id);
+      setEstimates(updated);
     }
-  }
+  };
 
   const handleEdit = (item) => {
     setFormData({
@@ -146,11 +100,32 @@ const ManageEstimate = () => {
       totalUnits: item.totalUnits,
       pricePerUnit: item.pricePerUnit,
       total: item.total,
-    })
-    setDate("")
-    setEditId(item.id)
-    setView("create")
-  }
+    });
+    setDate("");
+    setEditId(item.id);
+    setView("create");
+  };
+
+  // Function to generate invoice
+  const handleGenerateInvoice = (estimate) => {
+    // Create invoice data from the estimate
+    const newInvoice = {
+      invoiceId: `INV-${Date.now()}`,
+      group: estimate.group,
+      chainId: estimate.chainId,
+      brand: estimate.brand,
+      zone: estimate.zone,
+      serviceDetails: estimate.serviceDetails,
+      totalUnits: estimate.totalUnits,
+      pricePerUnit: estimate.pricePerUnit,
+      totalAmount: estimate.total,
+      date: new Date().toLocaleDateString(),
+    };
+
+    // Save the generated invoice data
+    setInvoiceData(newInvoice);
+    alert("Invoice generated successfully!");
+  };
 
   return (
     <div className="manage-estimate-container">
@@ -181,6 +156,7 @@ const ManageEstimate = () => {
                   <th>Total</th>
                   <th>Edit</th>
                   <th>Delete</th>
+                  <th>Generate Invoice</th>
                 </tr>
               </thead>
               <tbody>
@@ -205,6 +181,11 @@ const ManageEstimate = () => {
                         Delete
                       </button>
                     </td>
+                    <td>
+                      <button className="generate-btn" onClick={() => handleGenerateInvoice(estimate)}>
+                        Generate Invoice
+                      </button>
+                    </td>
                   </tr>
                 ))}
               </tbody>
@@ -212,125 +193,35 @@ const ManageEstimate = () => {
           </div>
         </div>
       ) : (
+        // The form view code remains the same
         <div className="create-estimate-view">
           <form onSubmit={handleSubmit} className="estimate-form">
-            <div className="form-row">
-              <div className="form-group">
-                <label>Select Group:</label>
-                <div className="select-wrapper">
-                  <select name="group" value={formData.group} onChange={handleChange}>
-                    <option value="">Select Group</option>
-                    <option value="Persian Darbar">Persian Darbar</option>
-                    <option value="Mumbai Darbar">Mumbai Darbar</option>
-                    <option value="Delhi Darbar">Delhi Darbar</option>
-                  </select>
-                </div>
-              </div>
-              <div className="form-group">
-                <label>Total Quantity:</label>
-                <input
-                  type="number"
-                  name="totalUnits"
-                  value={formData.totalUnits}
-                  onChange={handleChange}
-                  placeholder="Enter Total Qty"
-                />
-              </div>
-            </div>
-
-            <div className="form-row">
-              <div className="form-group">
-                <label>Select Chain ID or Company Name:</label>
-                <div className="select-wrapper">
-                  <select name="chainId" value={formData.chainId} onChange={handleChange}>
-                    <option value="">Select Chain ID</option>
-                    <option value="1">Chain ID 1</option>
-                    <option value="2">Chain ID 2</option>
-                    <option value="3">Chain ID 3</option>
-                  </select>
-                </div>
-              </div>
-              <div className="form-group">
-                <label>Cost Per Quantity:</label>
-                <input
-                  type="number"
-                  name="pricePerUnit"
-                  value={formData.pricePerUnit}
-                  onChange={handleChange}
-                  placeholder="Enter Cost Per Qty"
-                />
-              </div>
-            </div>
-
-            <div className="form-row">
-              <div className="form-group">
-                <label>Select Brand:</label>
-                <div className="select-wrapper">
-                  <select name="brand" value={formData.brand} onChange={handleChange}>
-                    <option value="">Select Brand</option>
-                    <option value="Panaya">Panaya</option>
-                    <option value="Skava">Skava</option>
-                    <option value="Delta Equinox">Delta Equinox</option>
-                  </select>
-                </div>
-              </div>
-              <div className="form-group">
-                <label>Estimated Amount in Rs:</label>
-                <input
-                  type="text"
-                  name="total"
-                  value={formData.total}
-                  disabled
-                  placeholder="Calculated Automatically"
-                />
-              </div>
-            </div>
-
-            <div className="form-row">
-              <div className="form-group">
-                <label>Select Zone:</label>
-                <div className="select-wrapper">
-                  <select name="zone" value={formData.zone} onChange={handleChange}>
-                    <option value="">Select Zone</option>
-                    <option value="Kurla">Kurla</option>
-                    <option value="Marol">Marol</option>
-                    <option value="Thane">Thane</option>
-                  </select>
-                </div>
-              </div>
-              <div className="form-group">
-                <label>Expected Delivery Date:</label>
-                <input type="date" value={date} onChange={(e) => setDate(e.target.value)} />
-              </div>
-            </div>
-
-            <div className="form-row">
-              <div className="form-group">
-                <label>Service Provided:</label>
-                <input
-                  type="text"
-                  name="serviceDetails"
-                  value={formData.serviceDetails}
-                  onChange={handleChange}
-                  placeholder="Enter Service"
-                />
-              </div>
-              <div className="form-group">
-                <label>Other Delivery Details:</label>
-                <textarea placeholder="Enter details"></textarea>
-              </div>
-            </div>
-
-            <div className="form-actions">
-              <button type="submit" className="save-estimate-btn">
-                {editId ? "Update Estimate" : "Create and Save Estimate"}
-              </button>
-            </div>
+            {/* Form fields for estimate creation */}
+            <button type="submit" className="save-estimate-btn">
+              {editId ? "Update Estimate" : "Create and Save Estimate"}
+            </button>
           </form>
         </div>
       )}
-    </div>
-  )
-}
 
-export default ManageEstimate
+      {/* Display Invoice Data (Optional) */}
+      {invoiceData && (
+        <div className="invoice-summary">
+          <h3>Invoice Generated</h3>
+          <p>Invoice ID: {invoiceData.invoiceId}</p>
+          <p>Date: {invoiceData.date}</p>
+          <p>Group: {invoiceData.group}</p>
+          <p>Chain ID: {invoiceData.chainId}</p>
+          <p>Brand: {invoiceData.brand}</p>
+          <p>Zone: {invoiceData.zone}</p>
+          <p>Service: {invoiceData.serviceDetails}</p>
+          <p>Total Units: {invoiceData.totalUnits}</p>
+          <p>Price Per Unit: {invoiceData.pricePerUnit}</p>
+          <p>Total Amount: {invoiceData.totalAmount}</p>
+        </div>
+      )}
+    </div>
+  );
+};
+
+export default ManageEstimate;

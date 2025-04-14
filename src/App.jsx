@@ -16,6 +16,8 @@ import AddBrand from "./pages/AddBrand"
 import EditBrand from "./pages/EditBrand"
 import ManageSubzones from "./pages/ManageSubzones"
 import ManageEstimate from "./components/Estimate/ManageEstimate"
+import ManageInvoice from "./pages/ManageInvoice"
+import GenerateInvoice from "./pages/GenerateInvoice"
 import "./App.css"
 
 function App() {
@@ -96,6 +98,8 @@ function App() {
               <Route path="/edit-brand/:id" element={<EditBrand brands={brands} setBrands={setBrands} chains={chains} />} />
               <Route path="/manage-subzones" element={<ManageSubzones />} />
               <Route path="/manage-estimates" element={<ManageEstimate estimates={estimates} setEstimates={setEstimates} chains={chains} groups={groups} />} />
+              <Route path="/manage-invoices" element={<ManageInvoice />} />
+              <Route path="/generate-invoice" element={<GenerateInvoice />} />
               <Route path="*" element={<Navigate to="/" replace />} />
             </Routes>
           </main>
