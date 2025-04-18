@@ -196,11 +196,19 @@ const ManageEstimate = () => {
         // The form view code remains the same
         <div className="create-estimate-view">
           <form onSubmit={handleSubmit} className="estimate-form">
-            {/* Form fields for estimate creation */}
+            <input type="text" name="group" value={formData.group} onChange={handleChange} placeholder="Group" />
+            <input type="text" name="chainId" value={formData.chainId} onChange={handleChange} placeholder="Chain ID" />
+            <input type="text" name="brand" value={formData.brand} onChange={handleChange} placeholder="Brand" />
+            <input type="text" name="zone" value={formData.zone} onChange={handleChange} placeholder="Zone" />
+            <input type="text" name="serviceDetails" value={formData.serviceDetails} onChange={handleChange} placeholder="Service Details" />
+            <input type="number" name="totalUnits" value={formData.totalUnits} onChange={handleChange} placeholder="Total Units" />
+            <input type="number" name="pricePerUnit" value={formData.pricePerUnit} onChange={handleChange} placeholder="Price Per Unit" />
+
             <button type="submit" className="save-estimate-btn">
               {editId ? "Update Estimate" : "Create and Save Estimate"}
             </button>
           </form>
+
         </div>
       )}
 

@@ -28,11 +28,7 @@ function Sidebar() {
             <NavLink to="/manage-brands" className={({ isActive }) => (isActive ? "active" : "")}>Manage Brands</NavLink>
           </li>
 
-          <li>
-            <NavLink to="/generate-invoice" className={({ isActive }) => (isActive ? "active" : "")}>
-              Generate Invoice
-            </NavLink>
-          </li>
+          
 
           -
 

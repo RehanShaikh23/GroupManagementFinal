@@ -18,6 +18,7 @@ import ManageSubzones from "./pages/ManageSubzones"
 import ManageEstimate from "./components/Estimate/ManageEstimate"
 import ManageInvoice from "./pages/ManageInvoice"
 import GenerateInvoice from "./pages/GenerateInvoice"
+import UpdateInvoice from "./components/UpdateInvoice"
 import "./App.css"
 
 function App() {
@@ -100,6 +101,8 @@ function App() {
               <Route path="/manage-estimates" element={<ManageEstimate estimates={estimates} setEstimates={setEstimates} chains={chains} groups={groups} />} />
               <Route path="/manage-invoices" element={<ManageInvoice />} />
               <Route path="/generate-invoice" element={<GenerateInvoice />} />
+              <Route path="/update-invoice/:id" element={<UpdateInvoice />} />
+              <Route path="generate" element={<GenerateInvoice />} />
               <Route path="*" element={<Navigate to="/" replace />} />
             </Routes>
           </main>

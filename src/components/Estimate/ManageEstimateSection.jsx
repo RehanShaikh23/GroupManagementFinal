@@ -1,12 +1,10 @@
-"use client"
-
-import { useState } from "react"
-import "./ManageEstimateSection.css"
+import { useState } from "react";
+import "./ManageEstimateSection.css";
 
 const ManageEstimateSection = () => {
-  const [view, setView] = useState("list") // 'list' or 'create'
-  const [selectedDate, setSelectedDate] = useState("")
-
+  const [view, setView] = useState("list");
+  const [selectedDate, setSelectedDate] = useState("");
+  
   // Sample data for estimates
   const estimates = [
     {
@@ -31,64 +29,18 @@ const ManageEstimateSection = () => {
       pricePerUnit: 1000,
       total: 6000,
     },
-    {
-      id: 3,
-      group: "Delhi Darbar",
-      chainId: 3,
-      brand: "Delta Equinox",
-      zone: "Thane",
-      serviceDetails: "Engine Servicing",
-      totalUnits: 4,
-      pricePerUnit: 12,
-      total: 4800,
-    },
-    {
-      id: 4,
-      group: "Deccan Punjab",
-      chainId: 5,
-      brand: "Skava",
-      zone: "Vashi",
-      serviceDetails: "Differential Servicing",
-      totalUnits: 3,
-      pricePerUnit: 1100,
-      total: 3300,
-    },
-    {
-      id: 5,
-      group: "Persian Darbar",
-      chainId: 6,
-      brand: "Panaya",
-      zone: "Borivali",
-      serviceDetails: "Engine Maintenance",
-      totalUnits: 5,
-      pricePerUnit: 7500,
-      total: 6000,
-    },
-    {
-      id: 6,
-      group: "Main Khemf",
-      chainId: 4,
-      brand: "Skava",
-      zone: "Neelinfo",
-      serviceDetails: "Radiator Service",
-      totalUnits: 1,
-      pricePerUnit: 2500,
-      total: 2500,
-    },
-  ]
+    // ... other data
+  ];
 
-  // Sample data for dropdowns
-  const groups = ["Persian Darbar", "Mumbai Darbar", "Delhi Darbar", "Deccan Punjab", "Main Khemf"]
-  const chains = [1, 2, 3, 4, 5, 6]
-  const brands = ["Panaya", "Skava", "Delta Equinox"]
-  const zones = ["Kurla", "Marol", "Thane", "Vashi", "Borivali", "Neelinfo"]
+  const groups = ["Persian Darbar", "Mumbai Darbar", "Delhi Darbar", "Deccan Punjab", "Main Khemf"];
+  const chains = [1, 2, 3, 4, 5, 6];
+  const brands = ["Panaya", "Skava", "Delta Equinox"];
+  const zones = ["Kurla", "Marol", "Thane", "Vashi", "Borivali", "Neelinfo"];
 
-  // Handle form submission
   const handleSubmit = (e) => {
-    e.preventDefault()
-    // Add your form submission logic here
-    setView("list")
-  }
+    e.preventDefault();
+    setView("list");
+  };
 
   return (
     <div className="manage-estimate-section">
@@ -102,9 +54,7 @@ const ManageEstimateSection = () => {
         <div className="header-right">
           <span>Hi User</span>
           <span className="header-divider">|</span>
-          <a href="#" className="logout-link">
-            Logout
-          </a>
+          <a href="#" className="logout-link">Logout</a>
         </div>
       </div>
 
@@ -113,27 +63,13 @@ const ManageEstimateSection = () => {
         {/* Sidebar Navigation */}
         <div className="estimate-sidebar">
           <nav className="sidebar-nav">
-            <a href="#" className="nav-link">
-              Dashboard
-            </a>
-            <a href="#" className="nav-link">
-              Manage Groups
-            </a>
-            <a href="#" className="nav-link">
-              Manage Chain
-            </a>
-            <a href="#" className="nav-link">
-              Manage Brands
-            </a>
-            <a href="#" className="nav-link">
-              Manage SubZones
-            </a>
-            <a href="#" className="nav-link active">
-              Manage Estimate
-            </a>
-            <a href="#" className="nav-link">
-              Manage Invoices
-            </a>
+            <a href="#" className="nav-link">Dashboard</a>
+            <a href="#" className="nav-link">Manage Groups</a>
+            <a href="#" className="nav-link">Manage Chain</a>
+            <a href="#" className="nav-link">Manage Brands</a>
+            <a href="#" className="nav-link">Manage SubZones</a>
+            <a href="#" className="nav-link active">Manage Estimate</a>
+            <a href="#" className="nav-link">Manage Invoices</a>
           </nav>
 
           {view === "list" && (
@@ -141,30 +77,18 @@ const ManageEstimateSection = () => {
               <div className="filter-section">
                 <h3>Filter by Brand</h3>
                 <div className="filter-links">
-                  <a href="#" className="filter-link">
-                    Panaya
-                  </a>
-                  <a href="#" className="filter-link">
-                    Skava
-                  </a>
-                  <a href="#" className="filter-link">
-                    Delta Equinox
-                  </a>
+                  <a href="#" className="filter-link">Panaya</a>
+                  <a href="#" className="filter-link">Skava</a>
+                  <a href="#" className="filter-link">Delta Equinox</a>
                 </div>
               </div>
 
               <div className="filter-section">
                 <h3>Filter by Group</h3>
                 <div className="filter-links">
-                  <a href="#" className="filter-link">
-                    Persian Darbar
-                  </a>
-                  <a href="#" className="filter-link">
-                    Mumbai Darbar
-                  </a>
-                  <a href="#" className="filter-link">
-                    Chennai Darbar
-                  </a>
+                  <a href="#" className="filter-link">Persian Darbar</a>
+                  <a href="#" className="filter-link">Mumbai Darbar</a>
+                  <a href="#" className="filter-link">Chennai Darbar</a>
                 </div>
               </div>
             </div>
@@ -180,9 +104,7 @@ const ManageEstimateSection = () => {
                   <h2>Total Estimate</h2>
                   <p>{estimates.length}</p>
                 </div>
-                <button className="create-btn" onClick={() => setView("create")}>
-                  Create Estimate
-                </button>
+                <button className="create-btn" onClick={() => setView("create")}>Create Estimate</button>
               </div>
 
               <div className="estimate-table-container">
@@ -214,12 +136,8 @@ const ManageEstimateSection = () => {
                         <td>{estimate.totalUnits}</td>
                         <td>{estimate.pricePerUnit}</td>
                         <td>{estimate.total}</td>
-                        <td>
-                          <button className="edit-btn">Edit</button>
-                        </td>
-                        <td>
-                          <button className="delete-btn">Delete</button>
-                        </td>
+                        <td><button className="edit-btn">Edit</button></td>
+                        <td><button className="delete-btn">Delete</button></td>
                       </tr>
                     ))}
                   </tbody>
@@ -232,89 +150,64 @@ const ManageEstimateSection = () => {
                 <div className="form-row">
                   <div className="form-group">
                     <label>Select Group:</label>
-                    <div className="select-container">
-                      <select>
-                        <option value="">Select Group</option>
-                        {groups.map((group, index) => (
-                          <option key={index} value={group}>
-                            {group}
-                          </option>
-                        ))}
-                      </select>
-                      <span className="select-arrow">▼</span>
-                    </div>
+                    <select>
+                      <option value="">Select Group</option>
+                      {groups.map((group, index) => (
+                        <option key={index} value={group}>{group}</option>
+                      ))}
+                    </select>
                   </div>
                   <div className="form-group">
                     <label>Total Quantity:</label>
-                    <input type="text" placeholder="Enter Total Qty" />
+                    <input type="number" placeholder="Enter Total Qty" />
                   </div>
                 </div>
 
                 <div className="form-row">
                   <div className="form-group">
                     <label>Select Chain ID or Company Name:</label>
-                    <div className="select-container">
-                      <select>
-                        <option value="">Select Chain ID</option>
-                        {chains.map((chain, index) => (
-                          <option key={index} value={chain}>
-                            {chain}
-                          </option>
-                        ))}
-                      </select>
-                      <span className="select-arrow">▼</span>
-                    </div>
+                    <select>
+                      <option value="">Select Chain ID</option>
+                      {chains.map((chain, index) => (
+                        <option key={index} value={chain}>{chain}</option>
+                      ))}
+                    </select>
                   </div>
                   <div className="form-group">
                     <label>Cost Per Quantity:</label>
-                    <input type="text" placeholder="Enter Cost Per Qty" />
+                    <input type="number" placeholder="Enter Cost Per Qty" />
                   </div>
                 </div>
 
                 <div className="form-row">
                   <div className="form-group">
                     <label>Select Brand:</label>
-                    <div className="select-container">
-                      <select>
-                        <option value="">Select Brand</option>
-                        {brands.map((brand, index) => (
-                          <option key={index} value={brand}>
-                            {brand}
-                          </option>
-                        ))}
-                      </select>
-                      <span className="select-arrow">▼</span>
-                    </div>
+                    <select>
+                      <option value="">Select Brand</option>
+                      {brands.map((brand, index) => (
+                        <option key={index} value={brand}>{brand}</option>
+                      ))}
+                    </select>
                   </div>
                   <div className="form-group">
                     <label>Estimated Amount in Rs:</label>
-                    <input type="text" placeholder="Enter Amount" />
+                    <input type="number" placeholder="Enter Amount" />
                   </div>
                 </div>
 
                 <div className="form-row">
                   <div className="form-group">
                     <label>Select Zone:</label>
-                    <div className="select-container">
-                      <select>
-                        <option value="">Select Zone</option>
-                        {zones.map((zone, index) => (
-                          <option key={index} value={zone}>
-                            {zone}
-                          </option>
-                        ))}
-                      </select>
-                      <span className="select-arrow">▼</span>
-                    </div>
+                    <select>
+                      <option value="">Select Zone</option>
+                      {zones.map((zone, index) => (
+                        <option key={index} value={zone}>{zone}</option>
+                      ))}
+                    </select>
                   </div>
                   <div className="form-group">
                     <label>Expected Delivery Date:</label>
-                    <input
-                      type="date"
-                      value={selectedDate}
-                      onChange={(e) => setSelectedDate(e.target.value)}
-                      placeholder="dd-mm-yyyy"
-                    />
+                    <input type="date" value={selectedDate} onChange={(e) => setSelectedDate(e.target.value)} />
                   </div>
                 </div>
 
@@ -330,9 +223,7 @@ const ManageEstimateSection = () => {
                 </div>
 
                 <div className="form-actions">
-                  <button type="submit" className="save-btn">
-                    Create and Save Estimate
-                  </button>
+                  <button type="submit" className="save-btn">Create and Save Estimate</button>
                 </div>
               </form>
             </div>
@@ -340,7 +231,7 @@ const ManageEstimateSection = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default ManageEstimateSection
+export default ManageEstimateSection;
