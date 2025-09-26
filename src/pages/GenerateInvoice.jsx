@@ -46,7 +46,7 @@ function GenerateInvoice() {
         value={estimateId}
         onChange={(e) => setEstimateId(e.target.value)}
       >
-        <option value="">Select an Estimate</option>
+      <option value="">Select an Estimate</option>
         {estimates.map((estimate) => (
           <option key={estimate.id} value={estimate.id}>
             {estimate.service} (Amount: Rs {estimate.amount})

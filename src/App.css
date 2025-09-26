@@ -69,3 +69,35 @@ body {
   color: white;
 }
 
+/* Responsive layout adjustments */
+@media (max-width: 1024px) {
+  .main-content {
+    padding: 16px;
+  }
+}
+
+@media (max-width: 768px) {
+  .content {
+    flex-direction: column;
+  }
+
+  .main-content {
+    padding: 14px;
+  }
+
+  .btn {
+    padding: 10px 16px;
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .main-content {
+    padding: 12px;
+  }
+
+  .btn {
+    font-size: 0.95rem;
+  }
+}
+

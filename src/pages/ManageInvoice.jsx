@@ -143,9 +143,7 @@ const ManageInvoice = () => {
                                         Delete
                                     </button>
 
-                                    <button className="edit-button" onClick={() => handleEdit(invoice.id)}>
-                                        Edit
-                                    </button>
+                                    
 
 
                                 </td>
